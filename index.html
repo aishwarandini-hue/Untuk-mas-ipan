@@ -1,0 +1,81 @@
+<!DOCTYPE html><html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mas Ipan Birthday</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body,html{overflow:hidden;font-family:'Poppins',sans-serif;background:#020814;color:white;width:100%;height:100%}
+.scene{position:absolute;width:100%;height:100%;top:0;left:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;transition:transform 1s cubic-bezier(.77,0,.18,1), opacity 1s ease;background:radial-gradient(circle at top,#0b1d3a,#020814 70%);padding:20px;overflow-y:auto;overflow-x:hidden;opacity:0;transform:translateX(100%)}
+.scene.active{left:0;opacity:1;transform:translateX(0)} .scene.exit-left{opacity:0;transform:translateX(-100%)}
+.card{background:rgba(255,255,255,0.08);backdrop-filter:blur(18px);padding:30px;border-radius:30px;box-shadow:0 0 40px rgba(255,105,180,.25);text-align:center;transform-style:preserve-3d;animation:float 4s ease-in-out infinite;max-width:90%;width:90%;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:auto;height:auto;margin:auto} @media(min-width:768px){.card{max-width:700px;width:700px}}
+@keyframes float{0%,100%{transform:translateY(0) rotateY(0)}50%{transform:translateY(-15px) rotateY(6deg)}}
+.btn{margin-top:20px;padding:16px 28px;border:none;border-radius:20px;background:linear-gradient(45deg,#ff7eb6,#ff4d88);color:#fff;font-size:1.2rem;font-weight:700;cursor:pointer;box-shadow:0 0 20px rgba(255,105,180,.4)}
+.hearts,.rain{position:absolute;width:100%;height:100%;overflow:hidden;top:0;left:0;pointer-events:none}
+.hearts span,.rain span{position:absolute;display:block}
+.hearts span{color:#ff8fcf;animation:heartFloat linear infinite}
+@keyframes heartFloat{0%{transform:translateY(100vh) scale(.5)}100%{transform:translateY(-10vh) scale(1.2)}}
+.rain span{width:3px;height:80px;background:linear-gradient(transparent,#ff2d95);animation:rainFall linear infinite;opacity:.8}
+@keyframes rainFall{0%{transform:translateY(-120px)}100%{transform:translateY(100vh)}}
+.keypad{display:grid;grid-template-columns:repeat(3,80px);gap:15px;justify-content:center;margin-top:20px}
+.key{padding:20px;background:linear-gradient(145deg,#ff4fa3,#4da6ff,#091833);color:white;border-radius:18px;font-size:1.4rem;cursor:pointer;box-shadow:0 0 15px rgba(255,105,180,.25);transition:.3s}.key:hover{transform:scale(1.08)}
+.dots{display:flex;gap:10px;justify-content:center;margin:15px;flex-wrap:wrap}
+.dot{width:18px;height:18px;border:2px solid pink;border-radius:50%}
+.fill{background:pink}
+.title{font-family:'Great Vibes',cursive;font-size:clamp(2.8rem,12vw,4rem);text-shadow:0 0 20px rgba(255,105,180,.5);text-align:center;padding:0 10px}
+.cake{font-size:10rem;filter:drop-shadow(0 0 20px pink);animation:float 3s infinite}
+.message{max-width:800px;padding:30px;font-size:clamp(1rem,4vw,1.2rem);line-height:1.9;text-align:center;word-break:break-word;overflow-wrap:break-word;width:100%;background:rgba(255,255,255,.08);border-radius:50px;box-shadow:0 0 30px rgba(255,255,255,.08), inset 0 0 20px rgba(255,255,255,.05);backdrop-filter:blur(14px)}
+.stars{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:hidden}.stars span{position:absolute;width:2px;height:2px;background:white;border-radius:50%;box-shadow:0 0 10px white,0 0 20px pink;animation:shoot linear infinite}.stars span::before{content:'';position:absolute;width:80px;height:2px;background:linear-gradient(90deg,white,transparent);transform:translateX(-80px)}@keyframes shoot{0%{transform:translate(0,0) rotate(25deg);opacity:1}100%{transform:translate(-120vw,120vh) rotate(25deg);opacity:0}}.cake-art{position:relative;width:220px;height:240px;margin-bottom:25px;animation:float 3s ease-in-out infinite}.cake-plate{position:absolute;bottom:0;width:240px;height:22px;background:#b97a56;border-radius:50%;left:-10px}.cake-bottom{position:absolute;bottom:20px;left:25px;width:170px;height:70px;background:#f4b64f;border-radius:0 0 30px 30px}.cake-top{position:absolute;bottom:85px;left:45px;width:130px;height:55px;background:#8fd3ff;border-radius:8px}.icing.top,.icing.bottom{position:absolute;background:#fff3d6;border-radius:20px}.icing.top{bottom:125px;left:40px;width:140px;height:22px}.icing.bottom{bottom:80px;left:20px;width:180px;height:25px}.candle{position:absolute;width:14px;height:45px;background:repeating-linear-gradient(45deg,#ff4d4d,#ff4d4d 6px,#fff 6px,#fff 12px);bottom:140px}.c1{left:70px}.c2{left:103px}.c3{left:136px}.flame{position:absolute;width:14px;height:22px;background:gold;border-radius:50% 50% 50% 50%;box-shadow:0 0 15px gold;animation:flicker .8s infinite alternate}.f1{left:70px;bottom:182px}.f2{left:103px;bottom:182px}.f3{left:136px;bottom:182px}@keyframes flicker{from{transform:scale(1)}to{transform:scale(1.15)}}
+</head>
+<body>
+<div class='hearts' id='hearts'></div>
+<section class='scene active' id='scene1'>
+<div class='card'>
+<div style='font-size:8rem'>🎁🐱</div>
+<h1 style='color:#ff8fcf'>Klik di sini ya mas Ipan</h1>
+<button class='btn' onclick='nextScene(2)'>Buka</button>
+</div>
+</section>
+<section class='scene' id='scene2' style='background:radial-gradient(circle at top,#102a43,#06101f 60%,#020814);'>
+<div class='card' style='background:linear-gradient(145deg, rgba(255,105,180,.15), rgba(0,140,255,.12), rgba(2,8,20,.92)); border:1px solid rgba(255,255,255,.08);'>
+<h2 style='color:#ffd1e8'>kode nya 1405 ya mas Ipan</h2>
+<div class='dots' id='dots'></div>
+<div class='keypad' id='keys'></div>
+</div>
+</section>
+<section class='scene' id='scene3'>
+<div class='rain' id='rain'></div>
+<h1 class='title'>Happy Birthday</h1>
+<button class='btn' style='position:absolute;bottom:80px' onclick='nextScene(4)'>Lanjut</button>
+</section>
+<section class='scene' id='scene4'>
+<div class='stars' id='stars'></div>
+<div class='card'>
+<div class='cake-art'>
+<div class='cake-plate'></div>
+<div class='cake-bottom'></div>
+<div class='cake-top'></div>
+<div class='icing top'></div>
+<div class='icing bottom'></div>
+<div class='candle c1'></div>
+<div class='candle c2'></div>
+<div class='candle c3'></div>
+<div class='flame f1'></div>
+<div class='flame f2'></div>
+<div class='flame f3'></div>
+</div>
+<div class='message'>Barakallah fii umrik mas Ipan Udah naik level ke 23 tahun nih xixi, semoga mas Ipan selalu dikelilingi hal-hal baik, dilancarkan segalanya, sehat selalu yaa, makin bahagia, di lancarkan terus rezeki nya, dan tetap jadi mas Ipan yang baik dan keren xixi</div>
+</div>
+</section>
+<script>
+for(let i=0;i<25;i++){let h=document.createElement('span');h.innerHTML='💗';h.style.left=Math.random()*100+'%';h.style.fontSize=(20+Math.random()*20)+'px';h.style.animationDuration=(4+Math.random()*6)+'s';document.getElementById('hearts').appendChild(h)}
+for(let i=0;i<80;i++){let r=document.createElement('span');r.style.left=Math.random()*100+'%';r.style.animationDuration=(1+Math.random()*2)+'s';r.style.animationDelay=Math.random()*2+'s';document.getElementById('rain').appendChild(r)} for(let i=0;i<35;i++){let s=document.createElement('span');s.style.left=Math.random()*100+'%';s.style.top=Math.random()*50+'%';s.style.animationDuration=(2+Math.random()*4)+'s';s.style.animationDelay=Math.random()*5+'s';document.getElementById('stars').appendChild(s)}
+let code='';const correct='1405';const dots=document.getElementById('dots');
+for(let i=0;i<4;i++){let d=document.createElement('div');d.className='dot';dots.appendChild(d)}
+const keys=document.getElementById('keys');
+[1,2,3,4,5,6,7,8,9,'',0].forEach(n=>{let k=document.createElement('div');k.className='key';k.innerText=n;k.onclick=()=>{if(n==='')return; if(code.length<4){code+=n;dots.children[code.length-1].classList.add('fill')} if(code.length===4){setTimeout(()=>{if(code===correct){nextScene(3)} else {alert('Salah yaa xixi');code='';[...dots.children].forEach(d=>d.classList.remove('fill'))}},300)}};keys.appendChild(k)})
+function nextScene(n){const current=document.querySelector('.scene.active'); if(current){current.classList.add('exit-left'); current.classList.remove('active'); setTimeout(()=>{current.classList.remove('exit-left')},1000);} const next=document.getElementById('scene'+n); setTimeout(()=>{next.classList.add('active')},120);}
+</script>
+</body>
+</html>
